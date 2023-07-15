@@ -1,7 +1,11 @@
 const request = require("supertest");
 const app = require("../../../server");
-
+const mongoose = require("mongoose");
 let newProduct = require("../data/new-product.json");
+
+afterAll(async () => {
+  await mongoose.disconnect();
+});
 
 it("POST /api/products", async () => {
   const response = await request(app).post("/api/products").send(newProduct);
