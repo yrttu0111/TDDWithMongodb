@@ -22,7 +22,7 @@ app.use((error, req, res, next) => {
 });
 // mongoose.disconnect();
 
-// app.listen(PORT, HOST);
+app.listen(PORT, HOST);
 // console.log(`Running on http://${HOST}:${PORT}`);
 
 module.exports = app;
