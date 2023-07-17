@@ -30,3 +30,34 @@ exports.getProductById = async (req, res, next) => {
     next(error);
   }
 };
+exports.updateProduct = async (req, res, next) => {
+  try {
+    const updateProduct = await productModel.findByIdAndUpdate(
+      req.params.productId,
+      req.body,
+      { new: true }
+    );
+    // console.log("updateProduct", updateProduct);
+    if (updateProduct) {
+      res.status(200).json(updateProduct);
+    } else {
+      res.status(404).send();
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+exports.deleteProduct = async (req, res, next) => {
+  try {
+    const deleteProduct = await productModel.findByIdAndDelete(
+      req.params.productId
+    );
+    if (deleteProduct) {
+      res.status(200).json(deleteProduct);
+    } else {
+      res.status(404).send();
+    }
+  } catch (error) {
+    next(error);
+  }
+};
